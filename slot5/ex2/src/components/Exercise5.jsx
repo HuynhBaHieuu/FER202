@@ -11,13 +11,17 @@ function Exercise5() {
     const teens = people
         .filter(person => person.age >= 13 && person.age <= 19)
         .map(person => `${person.name} (${person.age})`);
-
+    const secondPerson = people[1]
+    const isTeen = secondPerson.age >= 13 && secondPerson.age <= 19;
     return (
         <div>
             <h2>Exercise 5</h2>
             {teens.map((str, idx) => (
                 <p key={idx}>{str}</p>
             ))}
+            <p>secondPerson: {JSON.stringify(secondPerson)}</p>
+            <p>Result: {isTeen ? "tuoi teen" : "ko phai"}</p>
+            
         </div>
     );
 }

@@ -9,7 +9,12 @@ function Exercise8() {
         if (age >= 13 && age <= 19) acc.buckets.teen++;
         if (age >= 20) acc.buckets.adult++;
         return acc;
-    }, { total: 0, min: Infinity, max: -Infinity, buckets: { teen: 0, adult: 0 } });
+    }, 
+    { total: 0, 
+        min: Infinity, 
+        max: -Infinity, 
+        buckets: { teen: 0, adult: 0 } 
+    });
 
     return (
         <div>

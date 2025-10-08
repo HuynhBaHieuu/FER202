@@ -13,3 +13,5 @@ const teens = people
 	.map(p => `${p.name} (${p.age})`);
 
 teens.forEach(str => console.log(str));
+const countTeen = teens.length;
+console.log(`Count of teens: ${countTeen}`);
