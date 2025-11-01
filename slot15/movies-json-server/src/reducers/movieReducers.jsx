@@ -1,82 +1,109 @@
 export const initialMovieState = {
   movies: [],
   genres: [],
-  loading: false,
-  isEditing: null,
-  currentMovie: { avatar: '', title: '', description: '', genreId: '', duration: '', year: '', country: '' },
-  showEditModal: false,
+  loading: false, 
+  isEditing: null, 
+  currentMovie: {
+    title: '',
+    description: '',
+    poster: '',
+    genreId: '',
+    year: '',
+    duration: '',
+    country: ''
+  },
+  showEditModal: false,   
   showDeleteModal: false,
+  showViewModal: false,
+  selectedMovie: null,
   movieToDelete: null,
   filters: {
-    q: '',
+    search: '',
     genreId: '',
-    durationMin: '',
-    durationMax: '',
-    sort: ''
-  }
+    duration: {
+      min: '',
+      max: ''
+    }
+  },
+  sortOrder: 'asc'     
 };
 
 export const movieReducer = (state, action) => {
   switch (action.type) {
     case 'SET_MOVIES':
       return { ...state, movies: action.payload, loading: false };
-
+      
     case 'SET_GENRES':
       return { ...state, genres: action.payload };
 
+    case 'SET_FILTER':
+      return { ...state, filters: action.payload };
+      
+    case 'SET_SORT_ORDER':
+      return { ...state, sortOrder: action.payload };
+      
     case 'START_LOADING':
       return { ...state, loading: true };
-
+      
     case 'UPDATE_FIELD':
-      return {
-        ...state,
-        currentMovie: { ...state.currentMovie, [action.payload.name]: action.payload.value }
+      return { 
+          ...state, 
+          currentMovie: { ...state.currentMovie, [action.payload.name]: action.payload.value }
       };
 
     case 'OPEN_EDIT_MODAL':
-      return {
-        ...state,
-        currentMovie: action.payload,
+      return { 
+        ...state, 
+        currentMovie: action.payload, 
         isEditing: action.payload.id,
-        showEditModal: true
+        showEditModal: true 
       };
-
+      
     case 'CLOSE_EDIT_MODAL':
-      return {
-        ...state,
+      return { 
+        ...state, 
         currentMovie: initialMovieState.currentMovie,
         isEditing: null,
-        showEditModal: false
+        showEditModal: false 
       };
 
     case 'OPEN_DELETE_MODAL':
-      return {
-        ...state,
-        movieToDelete: action.payload,
-        showDeleteModal: true
-      };
+        return {
+            ...state,
+            movieToDelete: action.payload,
+            showDeleteModal: true 
+        };
 
     case 'CLOSE_DELETE_MODAL':
-      return {
-        ...state,
-        movieToDelete: null,
-        showDeleteModal: false
-      };
-
+        return {
+            ...state,
+            movieToDelete: null,
+            showDeleteModal: false 
+        };
+      
     case 'RESET_FORM':
+      return { 
+        ...state, 
+        currentMovie: initialMovieState.currentMovie, 
+        isEditing: null,
+        showEditModal: false,
+      };
+      
+    case 'OPEN_VIEW_DETAIL_MODAL':
       return {
         ...state,
-        currentMovie: initialMovieState.currentMovie,
-        isEditing: null,
-        showEditModal: false
+        selectedMovie: action.payload,
+        showViewModal: true
       };
 
-    case 'SET_FILTERS':
-      return { ...state, filters: { ...state.filters, ...action.payload } };
+    case 'CLOSE_VIEW_DETAIL_MODAL':
+      return {
+        ...state,
+        selectedMovie: null,
+        showViewModal: false
+      };
 
     default:
       return state;
   }
 };
-
-
