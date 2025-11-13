@@ -2,7 +2,7 @@
 import React, { useReducer } from 'react';
 import { Container, Card, Form, Button, Row, Col, Alert, Spinner } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
-import { usePayment } from '../contexts/PaymentContext';
+import { usePayment } from '../hooks/usePayment';
 import NavigationHeader from '../components/NavigationHeader';
 import ConfirmModal from '../components/ConfirmModal';
 

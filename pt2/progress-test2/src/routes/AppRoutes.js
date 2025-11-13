@@ -1,7 +1,7 @@
 //AppRoutes.js định nghĩa các route cho ứng dụng sử dụng React Router
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
-import { useAuth } from '../contexts/AuthContext.jsx'; // Import useAuth
+import { useAuth } from '../hooks/useAuth'; // Import useAuth
 import LoginPage from '../pages/LoginPage';
 import DashboardPage from '../pages/DashboardPage';
 import AddPaymentPage from '../pages/AddPaymentPage';

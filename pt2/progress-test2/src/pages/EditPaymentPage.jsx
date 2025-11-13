@@ -2,7 +2,7 @@
 import React, { useReducer, useEffect, useState } from 'react';
 import { Container, Card, Form, Button, Row, Col, Alert, Spinner } from 'react-bootstrap';
 import { useParams, useNavigate } from 'react-router-dom';
-import { usePayment } from '../contexts/PaymentContext';
+import { usePayment } from '../hooks/usePayment';
 import NavigationHeader from '../components/NavigationHeader';
 import ConfirmModal from '../components/ConfirmModal';
 import { FaArrowLeft } from 'react-icons/fa';

@@ -1,7 +1,7 @@
 //PaymentTable.jsx hiển thị danh sách thanh toán và tổng số tiền
 import React, { useState } from 'react';
 import { Table, Card, Badge, Spinner, Button, ButtonGroup } from 'react-bootstrap';
-import { usePayment } from '../contexts/PaymentContext';
+import { usePayment } from '../hooks/usePayment';
 import { useNavigate } from 'react-router-dom';
 import ConfirmModal from './ConfirmModal';
 import { FaEye, FaEdit, FaTrash } from 'react-icons/fa';
@@ -150,6 +150,7 @@ const PaymentTable = () => {
                                         <td className="text-end fw-bold fs-5">
                                             {formatAmount(totalAmount)}
                                         </td>
+                                        <td></td>
                                         <td></td>
                                     </tr>
                                 </tfoot>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Card, Form, Row, Col, Button } from 'react-bootstrap';
-import { usePayment } from '../contexts/PaymentContext';
+import { usePayment } from '../hooks/usePayment';
 
 const FilterBar = () => {
     const { filters, sortBy, setFilter, setSort, getUniqueSemesters, getUniqueCourses } = usePayment();

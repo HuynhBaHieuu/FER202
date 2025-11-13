@@ -1,16 +1,14 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React from 'react';
-import { AuthProvider } from './contexts/AuthContext';
-import { PaymentProvider } from './contexts/PaymentContext';
+import { Provider } from 'react-redux';
+import { store } from './store/store';
 import AppRoutes from './routes/AppRoutes';
 
 function App() {
   return (
-    <AuthProvider>
-      <PaymentProvider>
-        <AppRoutes />
-      </PaymentProvider>
-    </AuthProvider>
+    <Provider store={store}>
+      <AppRoutes />
+    </Provider>
   );
 }
 
