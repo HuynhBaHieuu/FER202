@@ -1,5 +1,6 @@
 import React, { useReducer } from "react";
 import { Form, Button, Card, Container, Row, Col, Modal } from "react-bootstrap";
+import ConfirmModal from "./ConfirmModal";
 
 // Initial state for the login form
 const initialState = {
@@ -145,7 +146,7 @@ function LoginForm({ onSubmit }) {
         </Col>
       </Row>
       {/* Modal hiển thị khi đăng nhập thành công */}
-      <Modal show={showModal} onHide={handleCloseModal} centered>
+      {/* <Modal show={showModal} onHide={handleCloseModal} centered>
         <Modal.Header closeButton>
           <Modal.Title>Login Successful</Modal.Title>
         </Modal.Header>
@@ -157,7 +158,15 @@ function LoginForm({ onSubmit }) {
             Close
           </Button>
         </Modal.Footer>
-      </Modal>
+      </Modal> */}
+      {/* Sử dụng ConfirmModal component */}
+      <ConfirmModal
+        show={showModal}
+        title="Login Successful"
+        message={`Welcome, ${username}! You have successfully logged in.`}
+        onConfirm={handleCloseModal}
+        onCancel={handleCloseModal}
+      />
     </Container>
   );
 }

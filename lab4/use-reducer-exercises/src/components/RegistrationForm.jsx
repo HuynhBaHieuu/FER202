@@ -1,6 +1,7 @@
 import React, { useReducer } from 'react';
-import { Form, Button, Card, Container, Row, Col, Modal, Toast, ToastContainer } from 'react-bootstrap';
-
+import { Form, Button, Card, Container, Row, Col } from 'react-bootstrap';
+import ConfirmModal from './ConfirmModal';
+import ToastComponent from './ToastComponent';
 // Initial state for the registration form
 const initialState = {
   formData: {
@@ -203,8 +204,12 @@ function RegistrationForm() {
 
     // Nếu form hợp lệ
     if (isFormValid()) {
+      console.log("Form is valid, showing toast and modal");
       dispatch({ type: "SHOW_TOAST" });
-      dispatch({ type: "SHOW_MODAL" });
+      // Delay modal để toast hiện trước
+      setTimeout(() => {
+        dispatch({ type: "SHOW_MODAL" });
+      }, 100);
     }
   };
 
@@ -311,55 +316,23 @@ function RegistrationForm() {
       </Row>
 
       {/* Toast Notification */}
-      <ToastContainer position="top-end" className="p-3">
-        <Toast
-          show={showToast}
-          onClose={() => dispatch({ type: "HIDE_TOAST" })}
-          delay={3000}
-          autohide
-          bg="success"
-        >
-          <Toast.Header>
-            <strong className="me-auto">Thành công!</strong>
-          </Toast.Header>
-          <Toast.Body className="text-white">
-            Submitted successfully!
-          </Toast.Body>
-        </Toast>
-      </ToastContainer>
+      <ToastComponent
+        show={showToast}
+        onClose={() => dispatch({ type: "HIDE_TOAST" })}
+        title="🎉 Thành công!"
+        message="Đăng ký tài khoản thành công!"
+        bg="success"
+        delay={5000}
+        position="top-center"
+        showCloseButton={true}
+      />
 
-      {/* Success Modal */}
-      <Modal show={showModal} onHide={handleCloseModal} centered size="md">
-        <Modal.Header closeButton>
-          <Modal.Title>Đăng Ký Thành Công!</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <Card>
-            <Card.Header>
-              <h5 className="text-center mb-0">Thông Tin Tài Khoản</h5>
-            </Card.Header>
-            <Card.Body>
-              <div className="mb-2">
-                <strong>Username:</strong> {formData.username}
-              </div>
-              <div className="mb-2">
-                <strong>Email:</strong> {formData.email}
-              </div>
-              <div className="mb-2">
-                <strong>Password:</strong> {formData.password}
-              </div>
-              <div className="text-muted small mt-3">
-                <em>Chúc mừng! Tài khoản của bạn đã được tạo thành công.</em>
-              </div>
-            </Card.Body>
-          </Card>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="success" onClick={handleCloseModal}>
-            Đóng
-          </Button>
-        </Modal.Footer>
-      </Modal>
+      {/* Sử dụng ConfirmModal component */}
+      <ConfirmModal
+        show={showModal}
+        onHide={handleCloseModal}
+        formData={formData}
+      />
     </Container>
   );
 }

@@ -8,9 +8,11 @@ import QuestionBank from './components/QuestionBank';
 function App() {
   return (
     <div>
-      <h1> Ex</h1>
+      <h1>Exercise 1</h1>
       <CounterComponent />
+      <h1>Exercise 2</h1>
       <LightSwitch />
+      <h1>Exercise 3</h1>
       <QuestionBank />
     </div>
   );

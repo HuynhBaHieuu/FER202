@@ -2,11 +2,14 @@ import React, { useState } from 'react';
 import { Card, Row, Col, Badge, Button, Modal, Toast, ToastContainer } from 'react-bootstrap';
 import { movies } from '../../data/movies';
 
-export default function MovieCard() {
+export default function MovieCard({ filteredMovies = [] }) {
   const [showModal, setShowModal] = useState(false);
   const [selectedMovie, setSelectedMovie] = useState(null);
   const [showToast, setShowToast] = useState(false);
   const [toastMessage, setToastMessage] = useState('');
+
+  // Use filtered movies if provided, otherwise use all movies
+  const moviesToDisplay = filteredMovies.length > 0 ? filteredMovies : movies;
 
   // Lấy danh sách favourites từ localStorage
   const getFavourites = () => {
@@ -50,7 +53,7 @@ export default function MovieCard() {
   return (
     <>
       <Row className="g-4">
-        {movies.map((movie) => (
+        {moviesToDisplay.map((movie) => (
           <Col key={movie.id} xs={12} md={6} lg={4}>
             <Card 
               className="h-100 shadow-sm movie-card"
